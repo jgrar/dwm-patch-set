@@ -1,9 +1,9 @@
 diff --git a/config.h b/config.h
 new file mode 100644
-index 0000000..e2fa1ce
+index 0000000..1435f8c
 --- /dev/null
 +++ b/config.h
-@@ -0,0 +1,141 @@
+@@ -0,0 +1,150 @@
 +/* See LICENSE file for copyright and license details. */
 +
 +/* appearance */
@@ -35,7 +35,7 @@ index 0000000..e2fa1ce
 +	/* class      instance    title       tags mask     isfloating   ismax        monitor */
 +	{ "URxvt",    "mindlock", NULL,       0,            1,           1,           -1 },
 +	{ "Gimp",     NULL,       NULL,       0,            1,           0,           -1 },
-+	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           0,           -1 },
++	{ "Firefox",  NULL,       NULL,       1 << 4,       0,           0,           -1 },
 +};
 +
 +/* layout(s) */
@@ -71,6 +71,15 @@ index 0000000..e2fa1ce
 +
 +#include "runorraise.c"
 +
++#define RUNORRAISE(KEY, NAME, CLASS, SPAWN) \
++	{ MODKEY|ShiftMask, KEY, runorraise, \
++		{.v = &(RoR){ \
++			.name = NAME, \
++			.class = CLASS, \
++			.spawn = (char **)SPAWN \
++		}} \
++	}
++
 +#define TERMSPAWN(NAME, ...) \
 +	{ TERM, "-name", NAME, "-e", __VA_ARGS__, NULL }
 +
@@ -80,9 +89,7 @@ index 0000000..e2fa1ce
 +static const char *firefoxcmd[] = {"firefox", NULL };
 +static const char *delugecmd[] = {"deluge", NULL };
 +
-+static const char *dmesgcmd[] = TERMSPAWN("dmesg",
-+		"sh", "-c", "'dmesg --reltime --follow --color=always | less +F'");
-+
++static const char *dmesgcmd[] = TERMSPAWN("dmesg", "dmesg-lessf");
 +static const char *htopcmd[] = TERMSPAWN("htop", "htop");
 +
 +static Key keys[] = {
@@ -99,8 +106,8 @@ index 0000000..e2fa1ce
 +	{ MODKEY,                       XK_Return, zoom,                {0} },
 +	{ MODKEY,                       XK_Tab,    view,                {0} },
 +	{ MODKEY|ShiftMask,             XK_c,      killclient,          {0} },
-+	{ MODKEY,                       XK_t,      setlayout,           {.v = &layouts[0]} },
-+	{ MODKEY,                       XK_f,      setlayout,           {.v = &layouts[1]} },
++	{ MODKEY,                       XK_f,      setlayout,           {.v = &layouts[0]} },
++	{ MODKEY,                       XK_t,      setlayout,           {.v = &layouts[1]} },
 +	{ MODKEY,                       XK_m,      setlayout,           {.v = &layouts[2]} },
 +	{ MODKEY,                       XK_space,  setlayout,           {0} },
 +	{ MODKEY|ShiftMask,             XK_space,  togglefloating,      {0} },
@@ -121,12 +128,14 @@ index 0000000..e2fa1ce
 +	{ MODKEY|ControlMask|ShiftMask, XK_j,      toggleverticalmax,   {0} },
 +	{ MODKEY|ControlMask|ShiftMask, XK_k,      toggleverticalmax,   {0} },
 +	{ MODKEY|ControlMask,           XK_m,      togglemaximize,      {0} },
-+	{ MODKEY|ShiftMask,             XK_a,      runorraise,          {.v = &(RoR){.name = "mindlock", .spawn = (char **)mindlockcmd} } },
-+	{ MODKEY|ShiftMask,             XK_n,      runorraise,          {.v = &(RoR){.name = "ncmpcpp", .spawn = (char **)ncmpcppcmd} } },
-+	{ MODKEY|ShiftMask,             XK_f,      runorraise,          {.v = &(RoR){.class = "Firefox", .spawn = (char **)firefoxcmd} } },
-+	{ MODKEY|ShiftMask,             XK_d,      runorraise,          {.v = &(RoR){.class = "Deluge", .spawn = (char **)delugecmd} } },
-+	{ MODKEY|ShiftMask,             XK_s,      runorraise,          {.v = &(RoR){.name = "dmesg", .spawn = (char **)dmesgcmd} } },
-+	{ MODKEY|ShiftMask,             XK_z,      runorraise,          {.v = &(RoR){.name = "htop", .spawn = (char **)htopcmd} } },
++
++	/*                                                              name        class      spawn */
++	RUNORRAISE(                     XK_a,                           "mindlock", NULL,      mindlockcmd),
++	RUNORRAISE(                     XK_n,                           "ncmpcpp",  NULL,      ncmpcppcmd),
++	RUNORRAISE(                     XK_f,                           NULL,       "Firefox", firefoxcmd),
++	RUNORRAISE(                     XK_d,                           NULL,       "Deluge",  delugecmd),
++	RUNORRAISE(                     XK_s,                           "dmesg",    NULL,      dmesgcmd),
++	RUNORRAISE(                     XK_z,                           "htop",     NULL,      htopcmd),
 +};
 +
 +/* button definitions */
