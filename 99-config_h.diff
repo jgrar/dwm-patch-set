@@ -1,9 +1,9 @@
 diff --git a/config.h b/config.h
 new file mode 100644
-index 0000000..1435f8c
+index 0000000..30a7308
 --- /dev/null
 +++ b/config.h
-@@ -0,0 +1,150 @@
+@@ -0,0 +1,151 @@
 +/* See LICENSE file for copyright and license details. */
 +
 +/* appearance */
@@ -12,11 +12,12 @@ index 0000000..1435f8c
 +	"Siji:size=8"
 +};
 +static const char dmenufont[]       = "monospace:size=10";
-+#define NUMCOLORS         2
++#define NUMCOLORS         3
 +static const char colors[NUMCOLORS][MAXCOLORS][8] = {
 +//	  border     foreground background
 +	{ "#696969", "#696969", "#262626" },  // normal
 +	{ "#696969", "#e0e0e0", "#262626" },  // selected
++	{ "#696969", "#ce5c00", "#262626" },  // urgent
 +	// add more here
 +};
 +static const unsigned int borderpx  = 1;        /* border pixel of windows */
