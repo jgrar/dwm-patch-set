@@ -1,12 +1,17 @@
 diff --git a/config.def.h b/config.def.h
-index ced35d4..23078d2 100644
+index f20e1bf..ad9c1c7 100644
 --- a/config.def.h
 +++ b/config.def.h
-@@ -12,6 +12,7 @@ static const XRenderColor *colors[][3] = {
- 	/*               fg                     bg                 border               */
- 	[SchemeNorm] = { RGBA(bb,bb,bb,OPAQUE), RGBA(22,22,22,d0), RGBA(44,44,44,OPAQUE) },
- 	[SchemeSel] =  { RGBA(ee,ee,ee,OPAQUE), RGBA(00,55,77,d0), RGBA(00,55,77,OPAQUE) },
-+	[SchemeUrg] =  { RGBA(ee,ee,ee,OPAQUE), RGBA(ee,44,44,d0), RGBA(ee,44,44,OPAQUE) },
+@@ -13,10 +13,12 @@ static const char col_gray2[]       = "#444444";
+ static const char col_gray3[]       = "#bbbbbb";
+ static const char col_gray4[]       = "#eeeeee";
+ static const char col_cyan[]        = "#005577";
++static const char col_red[]         = "#ee4444";
+ static const char *colors[][3]      = {
+ 	/*               fg         bg         border   */
+ 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+ 	[SchemeSel] =  { col_gray4, col_cyan,  col_cyan  },
+++	[SchemeUrg] =  { col_gray4, col_red,   col_red  },
  };
  
  /* tagging */
