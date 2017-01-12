@@ -1,10 +1,10 @@
 diff --git a/config.def.h b/config.def.h
-index 0e081b2..a7f1161 100644
+index 4b413f1..6c10d38 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -3,27 +3,26 @@
  /* appearance */
- static const unsigned int alpha     = 0xdd;     /* background color alpha */
+ static const unsigned short alpha   = 0x90;     /* background color alpha */
  static const unsigned int borderpx  = 1;        /* border pixel of windows */
 -static const unsigned int gappx     = 16;       /* border gap pixel of windows */
 -static const unsigned int snap      = 32;       /* snap pixel */
@@ -31,7 +31,7 @@ index 0e081b2..a7f1161 100644
  	/*               fg         bg         border   */
 -	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 -	[SchemeSel] =  { col_gray4, col_cyan,  col_cyan  },
--+	[SchemeUrg] =  { col_gray4, col_red,   col_red  },
+-	[SchemeUrg] =  { col_gray4, col_red,   col_red  },
 +	[SchemeNorm] = { col_norm, col_bg,  col_border },
 +	[SchemeSel] =  { col_sel,  col_bg,  col_border },
 +	[SchemeUrg] =  { col_urg,  col_bg,  col_border },

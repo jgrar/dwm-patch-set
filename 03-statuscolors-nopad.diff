@@ -11,7 +11,7 @@ index f20e1bf..ad9c1c7 100644
  	/*               fg         bg         border   */
  	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
  	[SchemeSel] =  { col_gray4, col_cyan,  col_cyan  },
-++	[SchemeUrg] =  { col_gray4, col_red,   col_red  },
++	[SchemeUrg] =  { col_gray4, col_red,   col_red  },
  };
  
  /* tagging */

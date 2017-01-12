@@ -4,7 +4,7 @@ index ad9c1c7..0e081b2 100644
 +++ b/config.def.h
 @@ -3,6 +3,7 @@
  /* appearance */
- static const unsigned int alpha     = 0xdd;     /* background color alpha */
+ static const unsigned short alpha   = 0x90;     /* background color alpha */
  static const unsigned int borderpx  = 1;        /* border pixel of windows */
 +static const unsigned int gappx     = 16;       /* border gap pixel of windows */
  static const unsigned int snap      = 32;       /* snap pixel */
